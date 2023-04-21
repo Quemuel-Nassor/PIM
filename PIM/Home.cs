@@ -82,7 +82,6 @@ namespace PIM
         {
             ActiveButton(btnSettings);
             FormShow(new Settings());
-            btnSettings.Visible = false;
         }
     }
 }

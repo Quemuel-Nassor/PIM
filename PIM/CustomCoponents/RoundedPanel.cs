@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 namespace PIM
 {
+
     public class RoundedPanel : Panel
     {
         private int _cornerRadius = 10;
@@ -54,4 +55,5 @@ namespace PIM
             e.Graphics.DrawPath(pen, path);
         }
     }
+
 }
