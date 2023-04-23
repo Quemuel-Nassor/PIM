@@ -37,10 +37,12 @@
             this.btnEmployees = new System.Windows.Forms.Button();
             this.brandPanel = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.containerMain = new System.Windows.Forms.TableLayoutPanel();
             this.panelContentForm = new System.Windows.Forms.Panel();
             this.mainPanel.SuspendLayout();
             this.brandPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.containerMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainPanel
@@ -172,19 +174,35 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // containerMain
+            // 
+            this.containerMain.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.containerMain.ColumnCount = 1;
+            this.containerMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.containerMain.Controls.Add(this.panelContentForm, 0, 0);
+            this.containerMain.Location = new System.Drawing.Point(437, 1);
+            this.containerMain.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.containerMain.Name = "containerMain";
+            this.containerMain.RowCount = 1;
+            this.containerMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.containerMain.Size = new System.Drawing.Size(1360, 851);
+            this.containerMain.TabIndex = 1;
+            // 
             // panelContentForm
             // 
-            this.panelContentForm.Location = new System.Drawing.Point(442, 0);
+            this.panelContentForm.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panelContentForm.Location = new System.Drawing.Point(5, 0);
+            this.panelContentForm.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.panelContentForm.Name = "panelContentForm";
-            this.panelContentForm.Size = new System.Drawing.Size(1352, 853);
-            this.panelContentForm.TabIndex = 1;
+            this.panelContentForm.Size = new System.Drawing.Size(1690, 1064);
+            this.panelContentForm.TabIndex = 2;
             // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1795, 853);
-            this.Controls.Add(this.panelContentForm);
+            this.Controls.Add(this.containerMain);
             this.Controls.Add(this.mainPanel);
             this.Location = new System.Drawing.Point(50, 0);
             this.Name = "Home";
@@ -195,6 +213,7 @@
             this.brandPanel.ResumeLayout(false);
             this.brandPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.containerMain.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -205,10 +224,11 @@
         private System.Windows.Forms.Panel brandPanel;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnEmployees;
-        private System.Windows.Forms.Panel panelContentForm;
         private System.Windows.Forms.Button btnHome;
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Button btnRegisterEmployees;
         private System.Windows.Forms.Button btnSettings;
+        private System.Windows.Forms.TableLayoutPanel containerMain;
+        private System.Windows.Forms.Panel panelContentForm;
     }
 }

@@ -19,20 +19,19 @@ namespace PIM
         {
             InitializeComponent();
 
-            lst_funcionarios.View = View.Details;
-            lst_funcionarios.LabelEdit = true;
-            lst_funcionarios.AllowColumnReorder = true;
-            lst_funcionarios.FullRowSelect = true;
-            lst_funcionarios.GridLines = true;
+            tableEmployees.View = View.Details;
+            tableEmployees.LabelEdit = true;
+            tableEmployees.AllowColumnReorder = true;
+            tableEmployees.FullRowSelect = true;
+            tableEmployees.GridLines = true;
 
-            lst_funcionarios.Columns.Add("ID", 30, HorizontalAlignment.Left);
-            lst_funcionarios.Columns.Add("Nome", 150, HorizontalAlignment.Left);
-            lst_funcionarios.Columns.Add("E-mail", 150, HorizontalAlignment.Left);
-            lst_funcionarios.Columns.Add("Celular", 150, HorizontalAlignment.Left);
-            lst_funcionarios.Columns.Add("CPF", 150, HorizontalAlignment.Left);
-            lst_funcionarios.Columns.Add("Senha", 150, HorizontalAlignment.Left);
-            lst_funcionarios.Columns.Add("isAdmin", 150, HorizontalAlignment.Left);
-
+            tableEmployees.Columns.Add("ID", 30, HorizontalAlignment.Left);
+            tableEmployees.Columns.Add("Nome", 150, HorizontalAlignment.Left);
+            tableEmployees.Columns.Add("E-mail", 150, HorizontalAlignment.Left);
+            tableEmployees.Columns.Add("Celular", 150, HorizontalAlignment.Left);
+            tableEmployees.Columns.Add("CPF", 150, HorizontalAlignment.Left);
+            tableEmployees.Columns.Add("Senha", 150, HorizontalAlignment.Left);
+            tableEmployees.Columns.Add("isAdmin", 150, HorizontalAlignment.Left);
 
         }
 
@@ -53,7 +52,7 @@ namespace PIM
 
                 MySqlDataReader reader = cmd.ExecuteReader();
 
-                lst_funcionarios.Items.Clear();
+                tableEmployees.Items.Clear();
 
                 while (reader.Read())
                 {
@@ -68,7 +67,7 @@ namespace PIM
                         reader.GetString(6)
                     };
 
-                    lst_funcionarios.Items.Add(new ListViewItem(row));
+                    tableEmployees.Items.Add(new ListViewItem(row));
                 }
             }
             catch (MySqlException ex)
@@ -100,13 +99,13 @@ namespace PIM
 
                 cmd.CommandText = "INSERT INTO pessoa (nome, email, celular, cpf, senha, userAdmin) " +
                                     "VALUES (@nome, @email, @celular, @cpf, @senha, @userAdmin) ";
-
+/*
                 cmd.Parameters.AddWithValue("@nome", textNome.Text);
                 cmd.Parameters.AddWithValue("@email", textEmail.Text);
                 cmd.Parameters.AddWithValue("@celular", textCelular.Text);
                 cmd.Parameters.AddWithValue("@cpf", textCPF.Text);
                 cmd.Parameters.AddWithValue("@senha", textSenha.Text);
-                cmd.Parameters.AddWithValue("@userAdmin", textAdmin.Text);
+                cmd.Parameters.AddWithValue("@userAdmin", textAdmin.Text);*/
 
                 cmd.Prepare();
 
@@ -144,13 +143,13 @@ namespace PIM
                 cmd.Connection = _connection;
 
                 cmd.CommandText = "UPDATE pessoa SET nome=@nome, email=@email, celular=@celular, cpf=@cpf, senha=@senha, userAdmin=@userAdmin " + "WHERE id=@id ";
-                cmd.Parameters.AddWithValue("@nome", textNome.Text);
+                /*cmd.Parameters.AddWithValue("@nome", textNome.Text);
                 cmd.Parameters.AddWithValue("@email", textEmail.Text);
                 cmd.Parameters.AddWithValue("@celular", textCelular.Text);
                 cmd.Parameters.AddWithValue("@cpf", textCPF.Text);
                 cmd.Parameters.AddWithValue("@senha", textSenha.Text);
                 cmd.Parameters.AddWithValue("@userAdmin", textAdmin.Text);
-                cmd.Parameters.AddWithValue("@id", employeesID);
+                cmd.Parameters.AddWithValue("@id", employeesID);*/
                 cmd.Prepare();
                 cmd.ExecuteNonQuery();
 
@@ -228,7 +227,7 @@ namespace PIM
 
         private void clearFields()
         {
-            id_funcionario_selecionado = null;
+           /* id_funcionario_selecionado = null;
 
             textNome.Text = String.Empty;
             textEmail.Text = "";
@@ -239,7 +238,7 @@ namespace PIM
 
             textNome.Focus();
 
-            button4.Visible = false;
+            button4.Visible = false;*/
         }
     }
 }

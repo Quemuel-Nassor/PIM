@@ -17,6 +17,3 @@ namespace PIM.Database
         static public string stringConnection = $"server={host};User Id={user}; database={database}; password={password}";
     }
 }
-{
-}
-}
