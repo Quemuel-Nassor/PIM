@@ -21,21 +21,13 @@ namespace PIM
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (DBConect())
-            {
-                MessageBox.Show("Conexao feita com sucesso =)");
-            }
-        }
-
         private bool DBConect()
         {
 
             var result = false;
             try
             {
-                using (var cn = new MySqlConnection(Conn.stringConnection))
+                using (var cn = new MySqlConnection(PIM.Database.Connection.stringConnection))
                 {
                     cn.Open();
                     result = true;
@@ -56,12 +48,12 @@ namespace PIM
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.tableContainerFormLogin = new System.Windows.Forms.TableLayoutPanel();
             this.bodyFormLogin = new System.Windows.Forms.Panel();
-            this.btnLogin = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.brandFormLogin = new System.Windows.Forms.PictureBox();
-            this.labelUserLogin = new System.Windows.Forms.Label();
             this.labelPassLogin = new System.Windows.Forms.Label();
+            this.labelUserLogin = new System.Windows.Forms.Label();
+            this.brandFormLogin = new System.Windows.Forms.PictureBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnLogin = new System.Windows.Forms.Button();
             this.tableContainerFormLogin.SuspendLayout();
             this.bodyFormLogin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.brandFormLogin)).BeginInit();
@@ -97,6 +89,57 @@ namespace PIM
             this.bodyFormLogin.Size = new System.Drawing.Size(415, 471);
             this.bodyFormLogin.TabIndex = 0;
             // 
+            // labelPassLogin
+            // 
+            this.labelPassLogin.AutoSize = true;
+            this.labelPassLogin.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.labelPassLogin.Location = new System.Drawing.Point(21, 258);
+            this.labelPassLogin.Name = "labelPassLogin";
+            this.labelPassLogin.Size = new System.Drawing.Size(54, 22);
+            this.labelPassLogin.TabIndex = 5;
+            this.labelPassLogin.Text = "Senha";
+            this.labelPassLogin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelUserLogin
+            // 
+            this.labelUserLogin.AutoSize = true;
+            this.labelUserLogin.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.labelUserLogin.Location = new System.Drawing.Point(21, 167);
+            this.labelUserLogin.Name = "labelUserLogin";
+            this.labelUserLogin.Size = new System.Drawing.Size(67, 22);
+            this.labelUserLogin.TabIndex = 4;
+            this.labelUserLogin.Text = "Usuário";
+            this.labelUserLogin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // brandFormLogin
+            // 
+            this.brandFormLogin.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.brandFormLogin.Image = ((System.Drawing.Image)(resources.GetObject("brandFormLogin.Image")));
+            this.brandFormLogin.Location = new System.Drawing.Point(153, 26);
+            this.brandFormLogin.Name = "brandFormLogin";
+            this.brandFormLogin.Size = new System.Drawing.Size(108, 94);
+            this.brandFormLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.brandFormLogin.TabIndex = 3;
+            this.brandFormLogin.TabStop = false;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(25, 192);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(362, 30);
+            this.textBox2.TabIndex = 2;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(25, 283);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(362, 30);
+            this.textBox1.TabIndex = 1;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
             // btnLogin
             // 
             this.btnLogin.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -112,57 +155,7 @@ namespace PIM
             this.btnLogin.TabIndex = 0;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = false;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(25, 283);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(362, 30);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // textBox2
-            // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(25, 192);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(362, 30);
-            this.textBox2.TabIndex = 2;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-            // 
-            // brandFormLogin
-            // 
-            this.brandFormLogin.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.brandFormLogin.Image = ((System.Drawing.Image)(resources.GetObject("brandFormLogin.Image")));
-            this.brandFormLogin.Location = new System.Drawing.Point(153, 26);
-            this.brandFormLogin.Name = "brandFormLogin";
-            this.brandFormLogin.Size = new System.Drawing.Size(135, 118);
-            this.brandFormLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.brandFormLogin.TabIndex = 3;
-            this.brandFormLogin.TabStop = false;
-            // 
-            // labelUserLogin
-            // 
-            this.labelUserLogin.AutoSize = true;
-            this.labelUserLogin.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.labelUserLogin.Location = new System.Drawing.Point(21, 167);
-            this.labelUserLogin.Name = "labelUserLogin";
-            this.labelUserLogin.Size = new System.Drawing.Size(67, 22);
-            this.labelUserLogin.TabIndex = 4;
-            this.labelUserLogin.Text = "Usuário";
-            this.labelUserLogin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // labelPassLogin
-            // 
-            this.labelPassLogin.AutoSize = true;
-            this.labelPassLogin.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.labelPassLogin.Location = new System.Drawing.Point(21, 258);
-            this.labelPassLogin.Name = "labelPassLogin";
-            this.labelPassLogin.Size = new System.Drawing.Size(68, 28);
-            this.labelPassLogin.TabIndex = 5;
-            this.labelPassLogin.Text = "Senha";
-            this.labelPassLogin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // Login
             // 
@@ -194,6 +187,14 @@ namespace PIM
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            if (DBConect())
+            {
+                MessageBox.Show("Conexao feita com sucesso =)");
+            }
         }
     }
 }

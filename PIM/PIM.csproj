@@ -89,10 +89,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Conn.cs" />
     <Compile Include="CustomCoponents\RoudedButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Database\Connection.cs" />
+    <Compile Include="Database\Employees.cs" />
     <Compile Include="Employees.cs">
       <SubType>Form</SubType>
     </Compile>

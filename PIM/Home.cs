@@ -53,6 +53,14 @@ namespace PIM
         {
             ActiveButton(btnHome);
             FormShow(new Profile());
+
+            bool isAdmin = true;
+
+            if (!isAdmin)
+            {
+                btnRegisterEmployees.Visible = false;
+                btnSettings.Visible = false;
+            }
         }
 
         private void btnHome_Click(object sender, EventArgs e)
