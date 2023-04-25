@@ -31,7 +31,7 @@ namespace PIM
             tableEmployees.Columns.Add("Celular", 150, HorizontalAlignment.Left);
             tableEmployees.Columns.Add("CPF", 150, HorizontalAlignment.Left);
             tableEmployees.Columns.Add("Senha", 150, HorizontalAlignment.Left);
-            tableEmployees.Columns.Add("isAdmin", 150, HorizontalAlignment.Left);
+            tableEmployees.Columns.Add("Admin", 150, HorizontalAlignment.Left);
 
         }
 
@@ -85,7 +85,7 @@ namespace PIM
             }
         }
 
-        private void createEmployees()
+       /* private void createEmployees()
         {
             try
             {
@@ -99,13 +99,13 @@ namespace PIM
 
                 cmd.CommandText = "INSERT INTO pessoa (nome, email, celular, cpf, senha, userAdmin) " +
                                     "VALUES (@nome, @email, @celular, @cpf, @senha, @userAdmin) ";
-/*
+*//*
                 cmd.Parameters.AddWithValue("@nome", textNome.Text);
                 cmd.Parameters.AddWithValue("@email", textEmail.Text);
                 cmd.Parameters.AddWithValue("@celular", textCelular.Text);
                 cmd.Parameters.AddWithValue("@cpf", textCPF.Text);
                 cmd.Parameters.AddWithValue("@senha", textSenha.Text);
-                cmd.Parameters.AddWithValue("@userAdmin", textAdmin.Text);*/
+                cmd.Parameters.AddWithValue("@userAdmin", textAdmin.Text);*//*
 
                 cmd.Prepare();
 
@@ -130,7 +130,7 @@ namespace PIM
             finally { _connection.Close(); }
 
         }
-
+*/
         private void updateEmployees(int employeesID)
         {
             try {

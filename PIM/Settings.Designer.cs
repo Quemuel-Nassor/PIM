@@ -52,7 +52,6 @@
             "Claro"});
             this.selectTheme.Location = new System.Drawing.Point(143, 243);
             this.selectTheme.Name = "selectTheme";
-            this.selectTheme.SelectedItem = "Claro";
             this.selectTheme.Size = new System.Drawing.Size(329, 24);
             this.selectTheme.TabIndex = 4;
             this.selectTheme.SelectedIndexChanged += new System.EventHandler(this.selectTheme_SelectedIndexChanged);

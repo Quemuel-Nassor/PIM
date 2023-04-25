@@ -173,6 +173,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // containerMain
             // 
@@ -181,7 +182,7 @@
             this.containerMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.containerMain.Controls.Add(this.panelContentForm, 0, 0);
             this.containerMain.Location = new System.Drawing.Point(437, 1);
-            this.containerMain.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.containerMain.Margin = new System.Windows.Forms.Padding(0);
             this.containerMain.Name = "containerMain";
             this.containerMain.RowCount = 1;
             this.containerMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -191,10 +192,10 @@
             // panelContentForm
             // 
             this.panelContentForm.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panelContentForm.Location = new System.Drawing.Point(5, 0);
-            this.panelContentForm.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.panelContentForm.Location = new System.Drawing.Point(0, 0);
+            this.panelContentForm.Margin = new System.Windows.Forms.Padding(0);
             this.panelContentForm.Name = "panelContentForm";
-            this.panelContentForm.Size = new System.Drawing.Size(1690, 1064);
+            this.panelContentForm.Size = new System.Drawing.Size(1360, 851);
             this.panelContentForm.TabIndex = 2;
             // 
             // Home

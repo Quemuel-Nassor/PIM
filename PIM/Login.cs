@@ -15,33 +15,12 @@ namespace PIM
 {
     public partial class Login : Form
     {
-
+        private MySqlConnection _connection;
         public Login()
         {
             InitializeComponent();
         }
 
-        private bool DBConect()
-        {
-
-            var result = false;
-            try
-            {
-                using (var cn = new MySqlConnection(PIM.Database.Connection.stringConnection))
-                {
-                    cn.Open();
-                    result = true;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                result = false;
-                MessageBox.Show($"Falha: {ex.Message}");
-            }
-
-            return result;
-        }
 
         private void InitializeComponent()
         {
@@ -129,7 +108,6 @@ namespace PIM
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(362, 30);
             this.textBox2.TabIndex = 2;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // textBox1
             // 
@@ -138,7 +116,6 @@ namespace PIM
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(362, 30);
             this.textBox1.TabIndex = 1;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // btnLogin
             // 
@@ -165,7 +142,6 @@ namespace PIM
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
-            this.Load += new System.EventHandler(this.Login_Load);
             this.tableContainerFormLogin.ResumeLayout(false);
             this.bodyFormLogin.ResumeLayout(false);
             this.bodyFormLogin.PerformLayout();
@@ -174,27 +150,14 @@ namespace PIM
 
         }
 
-        private void Login_Load(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (DBConect())
-            {
-                MessageBox.Show("Conexao feita com sucesso =)");
-            }
+            _connection = new MySqlConnection(PIM.Database.Connection.stringConnection);
+
+            _connection.Open();
+
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = _connection;
         }
     }
 }

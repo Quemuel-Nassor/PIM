@@ -40,7 +40,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.tableEmployees, 0, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(2, 2);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -50,9 +50,10 @@
             // tableEmployees
             // 
             this.tableEmployees.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tableEmployees.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.tableEmployees.HideSelection = false;
             this.tableEmployees.Location = new System.Drawing.Point(14, 68);
-            this.tableEmployees.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.tableEmployees.Margin = new System.Windows.Forms.Padding(0);
             this.tableEmployees.Name = "tableEmployees";
             this.tableEmployees.Size = new System.Drawing.Size(1319, 711);
             this.tableEmployees.TabIndex = 0;

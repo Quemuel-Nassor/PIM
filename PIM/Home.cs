@@ -91,5 +91,10 @@ namespace PIM
             ActiveButton(btnSettings);
             FormShow(new Settings());
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
