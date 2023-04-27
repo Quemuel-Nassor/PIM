@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 
 namespace PIM
@@ -30,8 +31,8 @@ namespace PIM
             this.labelPassLogin = new System.Windows.Forms.Label();
             this.labelUserLogin = new System.Windows.Forms.Label();
             this.brandFormLogin = new System.Windows.Forms.PictureBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.inputEmailLogin = new System.Windows.Forms.TextBox();
+            this.inputPasswordLogin = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
             this.tableContainerFormLogin.SuspendLayout();
             this.bodyFormLogin.SuspendLayout();
@@ -59,8 +60,8 @@ namespace PIM
             this.bodyFormLogin.Controls.Add(this.labelPassLogin);
             this.bodyFormLogin.Controls.Add(this.labelUserLogin);
             this.bodyFormLogin.Controls.Add(this.brandFormLogin);
-            this.bodyFormLogin.Controls.Add(this.textBox2);
-            this.bodyFormLogin.Controls.Add(this.textBox1);
+            this.bodyFormLogin.Controls.Add(this.inputEmailLogin);
+            this.bodyFormLogin.Controls.Add(this.inputPasswordLogin);
             this.bodyFormLogin.Controls.Add(this.btnLogin);
             this.bodyFormLogin.Location = new System.Drawing.Point(449, 123);
             this.bodyFormLogin.Margin = new System.Windows.Forms.Padding(0);
@@ -101,21 +102,21 @@ namespace PIM
             this.brandFormLogin.TabIndex = 3;
             this.brandFormLogin.TabStop = false;
             // 
-            // textBox2
+            // inputEmailLogin
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(25, 192);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(362, 30);
-            this.textBox2.TabIndex = 2;
+            this.inputEmailLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.inputEmailLogin.Location = new System.Drawing.Point(25, 192);
+            this.inputEmailLogin.Name = "inputEmailLogin";
+            this.inputEmailLogin.Size = new System.Drawing.Size(362, 30);
+            this.inputEmailLogin.TabIndex = 2;
             // 
-            // textBox1
+            // inputPasswordLogin
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(25, 283);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(362, 30);
-            this.textBox1.TabIndex = 1;
+            this.inputPasswordLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.inputPasswordLogin.Location = new System.Drawing.Point(25, 283);
+            this.inputPasswordLogin.Name = "inputPasswordLogin";
+            this.inputPasswordLogin.Size = new System.Drawing.Size(362, 30);
+            this.inputPasswordLogin.TabIndex = 1;
             // 
             // btnLogin
             // 
@@ -152,12 +153,86 @@ namespace PIM
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            _connection = new MySqlConnection(PIM.Database.Connection.stringConnection);
 
-            _connection.Open();
+            try { 
+                _connection = new MySqlConnection(PIM.Database.Connection.stringConnection);
+                _connection.Open();
 
-            MySqlCommand cmd = new MySqlCommand();
-            cmd.Connection = _connection;
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = _connection;
+
+                string authenticateUser = $"SELECT * FROM `holerite_pim`.`funcionario` WHERE email = '{inputEmailLogin.Text}';";
+                cmd.CommandText = authenticateUser;
+                cmd.Prepare();
+                MySqlDataReader rdr = cmd.ExecuteReader();
+
+   
+                if (rdr.Read())
+                {
+
+                    _connection.Close();
+
+                    _connection.Open();
+                    string authenticatePassword = $"SELECT * FROM `holerite_pim`.`funcionario` WHERE email = '{inputEmailLogin.Text}' AND senha = '{inputPasswordLogin.Text}';";
+                    cmd.Prepare();
+                    cmd.CommandText = authenticatePassword;
+
+                    MySqlDataReader user = cmd.ExecuteReader();
+
+                    if (user.Read())
+                    {
+
+                        int id = user.GetInt32(0);
+                        int idPermition = user.GetInt32(1);
+                        int idRole = user.GetInt32(2);
+                        string name = user.GetString(3);
+                        string email = user.GetString(4);
+                        string phone = user.GetString(5);
+                        string cpf = user.GetString(6);
+                        string password = user.GetString(7);
+                        string status = user.GetString(8);
+/*
+                        PIM.Database.User.id = id;
+                        PIM.Database.User.idPermition = idPermition;
+                        PIM.Database.User.name = name;
+                        PIM.Database.User.email = email;
+                        PIM.Database.User.phone = phone;
+                        PIM.Database.User.cpf = cpf;
+                        PIM.Database.User.password = password;
+                        PIM.Database.User.status = status;*/
+
+                        MessageBox.Show("Login feito com sucesso!");
+
+                        PIM.Home home = new PIM.Home();
+
+                        this.Hide();
+                        home.Show();
+                        
+
+                    } else
+                    {
+                        MessageBox.Show("Senha incorreta!");
+                    }
+
+                } else
+                {
+                    MessageBox.Show("Usuário não encontrado!");
+
+                }
+
+
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Erro " + ex.Number + " ocorreu: " + ex.Message,
+                                "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu: " + ex.Message,
+                                "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally { _connection.Close(); }
         }
     }
 }

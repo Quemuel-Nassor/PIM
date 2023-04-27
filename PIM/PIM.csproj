@@ -135,6 +135,7 @@
     <Compile Include="Settings.Designer.cs">
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Database\User.cs" />
     <EmbeddedResource Include="CustomCoponents\RoudedButton.resx">
       <DependentUpon>RoudedButton.cs</DependentUpon>
     </EmbeddedResource>

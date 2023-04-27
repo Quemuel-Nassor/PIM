@@ -13,8 +13,8 @@ namespace PIM
 
         private TableLayoutPanel tableContainerFormLogin;
         private Panel bodyFormLogin;
-        private TextBox textBox2;
-        private TextBox textBox1;
+        private TextBox inputEmailLogin;
+        private TextBox inputPasswordLogin;
         private Button btnLogin;
         private PictureBox brandFormLogin;
         private Label labelPassLogin;
