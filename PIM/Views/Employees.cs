@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
 
 namespace PIM.Views
 {
@@ -80,60 +73,62 @@ namespace PIM.Views
                 MessageBox.Show("Ocorreu: " + ex.Message,
                                 "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            finally { 
+            finally
+            {
                 _connection.Close();
             }
         }
 
-       /* private void createEmployees()
+        /* private void createEmployees()
+         {
+             try
+             {
+                 _connection = new MySqlConnection(PIM.Controllers.Database.Connection.stringConnection);
+
+                 _connection.Open();
+
+                 MySqlCommand cmd = new MySqlCommand();
+                 cmd.Connection = _connection;
+
+
+                 cmd.CommandText = "INSERT INTO pessoa (nome, email, celular, cpf, senha, userAdmin) " +
+                                     "VALUES (@nome, @email, @celular, @cpf, @senha, @userAdmin) ";
+ *//*
+                 cmd.Parameters.AddWithValue("@nome", textNome.Text);
+                 cmd.Parameters.AddWithValue("@email", textEmail.Text);
+                 cmd.Parameters.AddWithValue("@celular", textCelular.Text);
+                 cmd.Parameters.AddWithValue("@cpf", textCPF.Text);
+                 cmd.Parameters.AddWithValue("@senha", textSenha.Text);
+                 cmd.Parameters.AddWithValue("@userAdmin", textAdmin.Text);*//*
+
+                 cmd.Prepare();
+
+                 cmd.ExecuteNonQuery();
+
+                 MessageBox.Show("Dados Inseridos com Sucesso!",
+                 "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                 clearFields();
+                 getAllEmployees();
+             }
+             catch (MySqlException ex)
+             {
+                 MessageBox.Show("Erro " + ex.Number + " ocorreu: " + ex.Message,
+                                 "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+             }
+             catch (Exception ex)
+             {
+                 MessageBox.Show("Ocorreu: " + ex.Message,
+                                 "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+             }
+             finally { _connection.Close(); }
+
+         }
+ */
+        private void updateEmployees(int employeesID)
         {
             try
             {
-                _connection = new MySqlConnection(PIM.Controllers.Database.Connection.stringConnection);
-
-                _connection.Open();
-
-                MySqlCommand cmd = new MySqlCommand();
-                cmd.Connection = _connection;
-
-
-                cmd.CommandText = "INSERT INTO pessoa (nome, email, celular, cpf, senha, userAdmin) " +
-                                    "VALUES (@nome, @email, @celular, @cpf, @senha, @userAdmin) ";
-*//*
-                cmd.Parameters.AddWithValue("@nome", textNome.Text);
-                cmd.Parameters.AddWithValue("@email", textEmail.Text);
-                cmd.Parameters.AddWithValue("@celular", textCelular.Text);
-                cmd.Parameters.AddWithValue("@cpf", textCPF.Text);
-                cmd.Parameters.AddWithValue("@senha", textSenha.Text);
-                cmd.Parameters.AddWithValue("@userAdmin", textAdmin.Text);*//*
-
-                cmd.Prepare();
-
-                cmd.ExecuteNonQuery();
-
-                MessageBox.Show("Dados Inseridos com Sucesso!",
-                "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
-                clearFields();
-                getAllEmployees();
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show("Erro " + ex.Number + " ocorreu: " + ex.Message,
-                                "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ocorreu: " + ex.Message,
-                                "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally { _connection.Close(); }
-
-        }
-*/
-        private void updateEmployees(int employeesID)
-        {
-            try {
 
                 _connection = new MySqlConnection(PIM.Controllers.Database.Connection.stringConnection);
 
@@ -170,7 +165,8 @@ namespace PIM.Views
                 MessageBox.Show("Ocorreu: " + ex.Message,
                                 "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            finally { 
+            finally
+            {
                 _connection.Close();
             }
 
@@ -220,25 +216,26 @@ namespace PIM.Views
                 MessageBox.Show("Ocorreu: " + ex.Message,
                                 "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            finally { 
+            finally
+            {
                 _connection.Close();
             }
         }
 
         private void clearFields()
         {
-           /* id_funcionario_selecionado = null;
+            /* id_funcionario_selecionado = null;
 
-            textNome.Text = String.Empty;
-            textEmail.Text = "";
-            textCelular.Text = "";
-            textCPF.Text = "";
-            textSenha.Text = "";
-            textAdmin.Text = "";
+             textNome.Text = String.Empty;
+             textEmail.Text = "";
+             textCelular.Text = "";
+             textCPF.Text = "";
+             textSenha.Text = "";
+             textAdmin.Text = "";
 
-            textNome.Focus();
+             textNome.Focus();
 
-            button4.Visible = false;*/
+             button4.Visible = false;*/
         }
     }
 }

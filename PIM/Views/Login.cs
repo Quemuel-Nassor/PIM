@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 
 namespace PIM.Views
@@ -154,7 +145,8 @@ namespace PIM.Views
         private void btnLogin_Click(object sender, EventArgs e)
         {
 
-            try { 
+            try
+            {
                 _connection = new MySqlConnection(PIM.Controllers.Database.Connection.stringConnection);
                 _connection.Open();
 
@@ -166,7 +158,7 @@ namespace PIM.Views
                 cmd.Prepare();
                 MySqlDataReader rdr = cmd.ExecuteReader();
 
-   
+
                 if (rdr.Read())
                 {
 
@@ -191,15 +183,15 @@ namespace PIM.Views
                         string cpf = user.GetString(6);
                         string password = user.GetString(7);
                         string status = user.GetString(8);
-/*
-                        PIM.Database.User.id = id;
-                        PIM.Database.User.idPermition = idPermition;
-                        PIM.Database.User.name = name;
-                        PIM.Database.User.email = email;
-                        PIM.Database.User.phone = phone;
-                        PIM.Database.User.cpf = cpf;
-                        PIM.Database.User.password = password;
-                        PIM.Database.User.status = status;*/
+                        /*
+                                                PIM.Database.User.id = id;
+                                                PIM.Database.User.idPermition = idPermition;
+                                                PIM.Database.User.name = name;
+                                                PIM.Database.User.email = email;
+                                                PIM.Database.User.phone = phone;
+                                                PIM.Database.User.cpf = cpf;
+                                                PIM.Database.User.password = password;
+                                                PIM.Database.User.status = status;*/
 
                         MessageBox.Show("Login feito com sucesso!");
 
@@ -207,14 +199,16 @@ namespace PIM.Views
 
                         this.Hide();
                         home.Show();
-                        
 
-                    } else
+
+                    }
+                    else
                     {
                         MessageBox.Show("Senha incorreta!");
                     }
 
-                } else
+                }
+                else
                 {
                     MessageBox.Show("Usuário não encontrado!");
 

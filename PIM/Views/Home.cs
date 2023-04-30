@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
 
 namespace PIM.Views
 {
@@ -34,7 +27,7 @@ namespace PIM.Views
 
         private void ActiveFormClose()
         {
-            if(activeForm != null)
+            if (activeForm != null)
             {
                 activeForm.Close();
             }
@@ -42,7 +35,7 @@ namespace PIM.Views
 
         private void ActiveButton(Button activeForm)
         {
-            foreach(Control control in mainPanel.Controls)
+            foreach (Control control in mainPanel.Controls)
             {
                 control.ForeColor = Color.White;
                 activeForm.ForeColor = Color.Orange;
