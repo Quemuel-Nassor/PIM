@@ -1,4 +1,4 @@
-﻿namespace PIM
+﻿namespace PIM.Views
 {
     partial class Settings
     {

@@ -2,7 +2,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace PIM
+namespace PIM.Views
 {
     public partial class RegisterEmployees : Form
     {
@@ -18,7 +18,7 @@ namespace PIM
         {
             try
             {
-                _connection = new MySqlConnection(PIM.Database.Connection.stringConnection);
+                _connection = new MySqlConnection(PIM.Controllers.Database.Connection.stringConnection);
 
                 _connection.Open();
 

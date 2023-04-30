@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
-namespace PIM
+namespace PIM.Views
 {
     public partial class Employees : Form
     {
@@ -39,7 +39,7 @@ namespace PIM
         {
             try
             {
-                _connection = new MySqlConnection(PIM.Database.Connection.stringConnection);
+                _connection = new MySqlConnection(PIM.Controllers.Database.Connection.stringConnection);
 
                 _connection.Open();
 
@@ -89,7 +89,7 @@ namespace PIM
         {
             try
             {
-                _connection = new MySqlConnection(PIM.Database.Connection.stringConnection);
+                _connection = new MySqlConnection(PIM.Controllers.Database.Connection.stringConnection);
 
                 _connection.Open();
 
@@ -135,7 +135,7 @@ namespace PIM
         {
             try {
 
-                _connection = new MySqlConnection(PIM.Database.Connection.stringConnection);
+                _connection = new MySqlConnection(PIM.Controllers.Database.Connection.stringConnection);
 
                 _connection.Open();
 
@@ -187,7 +187,7 @@ namespace PIM
 
                 if (conf == DialogResult.Yes)
                 {
-                    _connection = new MySqlConnection(PIM.Database.Connection.stringConnection);
+                    _connection = new MySqlConnection(PIM.Controllers.Database.Connection.stringConnection);
 
                     _connection.Open();
 

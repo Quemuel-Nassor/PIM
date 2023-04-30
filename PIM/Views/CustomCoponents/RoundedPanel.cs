@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PIM
+namespace PIM.Views.CustomComponents
 {
 
     public class RoundedPanel : Panel

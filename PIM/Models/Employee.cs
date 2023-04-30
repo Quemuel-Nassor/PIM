@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PIM.Database
+namespace PIM.Models
 {
-    internal class Employees
+    public class Employee
     {
 
     }

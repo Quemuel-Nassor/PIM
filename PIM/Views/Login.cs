@@ -12,7 +12,7 @@ using MySql.Data.MySqlClient;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 
-namespace PIM
+namespace PIM.Views
 {
     public partial class Login : Form
     {
@@ -155,7 +155,7 @@ namespace PIM
         {
 
             try { 
-                _connection = new MySqlConnection(PIM.Database.Connection.stringConnection);
+                _connection = new MySqlConnection(PIM.Controllers.Database.Connection.stringConnection);
                 _connection.Open();
 
                 MySqlCommand cmd = new MySqlCommand();
@@ -203,7 +203,7 @@ namespace PIM
 
                         MessageBox.Show("Login feito com sucesso!");
 
-                        PIM.Home home = new PIM.Home();
+                        PIM.Views.Home home = new PIM.Views.Home();
 
                         this.Hide();
                         home.Show();
