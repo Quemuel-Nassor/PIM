@@ -17,7 +17,7 @@ CREATE TABLE Funcionario (
     CreationTime DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     Nome VARCHAR(50),
     Cpf VARCHAR(14),
-    Celular VARCHAR(13),
+    Celular VARCHAR(18),
     Email VARCHAR(50),
     Senha VARCHAR(50),
     Ativo BOOLEAN NOT NULL DEFAULT TRUE,
