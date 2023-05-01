@@ -1,13 +1,12 @@
 ﻿using MySql.Data.MySqlClient;
+using PIM.Controllers.Employees;
+using PIM.Models.Employees;
 using PIM.Models.Permissions;
 using PIM.Models.Positions;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PIM.Controllers.Database
 {
@@ -70,7 +69,20 @@ namespace PIM.Controllers.Database
                     seeds.Add($"INSERT INTO Holerite_Pim.Permissao (Id, Nome) VALUES ({(int)permission}, '{Enum.GetName(permission.GetType(), permission)}');");
                 }
 
+                Employee admin = new Employee()
+                {
+                    Email = "Admin",
+                    Senha = "123",
+                    IdCargo = (int)EnumPositions.Desenvolvedor,
+                    IdPermissao = (int)EnumPermissions.Admin,
+                    Nome = "Administrador",
+                    Cpf = "621.869.740-10",
+                    Celular = "(91) 99885-9305"
+                };
+
                 ExecuteQuery(string.Join("\n", seeds)).Close();
+
+                new EmployeeController().Create(admin);
             }
             catch (MySqlException e)
             {
