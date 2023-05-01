@@ -1,4 +1,6 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Google.Protobuf.WellKnownTypes;
+using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI.Relational;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,10 +16,17 @@ namespace PIM.Controllers.Utils
 
             try
             {
-                foreach (var item in typeof(T).GetProperties())
+                if (result.HasRows)
                 {
-                    var value = result[item.Name];
-                    if (value != null) item.SetValue(data, value);
+                    foreach (var item in typeof(T).GetProperties())
+                    {
+                        var value = result[item.Name];
+                        if (value != null) item.SetValue(data, value);
+                    }
+                }
+                else
+                {
+                    data = default;
                 }
             }
             catch (Exception e)
@@ -27,26 +36,6 @@ namespace PIM.Controllers.Utils
 
             return data;
         }
-
-        //public static T MapFromDb<T>(this DataRow row) where T : new()
-        //{
-        //    T data = new T();
-
-        //    try
-        //    {
-        //        foreach (var item in typeof(T).GetProperties())
-        //        {
-        //            var value = row[item.Name];
-        //            if (value != null) item.SetValue(data, value.ToString());
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.Error.WriteLine($"MapperHelper | MapFromDb | error: {e.Message}");
-        //    }
-
-        //    return data;
-        //}
 
         public static string MapToInsertDb<T>(this T input)
         {
@@ -58,11 +47,26 @@ namespace PIM.Controllers.Utils
                 foreach (PropertyInfo item in typeof(T).GetProperties())
                 {
                     var value = item.GetValue(input);
+                    var type = value.GetType();
 
-                    if (value != null)
+                    string stringValue = value.ToString();
+
+                    if (value != null && stringValue != "0" && stringValue != DateTime.MinValue.ToString())
                     {
                         columns.Add(item.Name);
-                        values.Add(value.GetType() == typeof(string) ? $"'{item.GetValue(input)}'" : item.GetValue(input).ToString());
+
+                        if (type == typeof(string) || type == typeof(DateTime))
+                        {
+                            values.Add($"'{value}'");
+                        }
+                        else if (type == typeof(Byte) || type == typeof(SByte) || type == typeof(UInt16) || type == typeof(UInt32) || type == typeof(UInt64) || type == typeof(Int16) || type == typeof(Int32) || type == typeof(Int64) || type == typeof(Decimal) || type == typeof(Double) || type == typeof(Single))
+                        {
+                            values.Add(value.ToString());
+                        }
+                        else
+                        {
+                            values.Add(Convert.ToInt32(value).ToString());
+                        }
                     }
                 }
             }
@@ -83,10 +87,25 @@ namespace PIM.Controllers.Utils
                 foreach (PropertyInfo item in typeof(T).GetProperties())
                 {
                     var value = item.GetValue(input);
+                    var type = value.GetType();
 
-                    if (value != null)
+                    string stringValue = value.ToString();
+
+                    if (value != null && stringValue != "0" && stringValue != DateTime.MinValue.ToString())
                     {
-                        sqlStatement = $"{item.Name}={(value.GetType() == typeof(string) ? $"'{item.GetValue(input)}'" : item.GetValue(input).ToString())}";
+                        if (type == typeof(string) || type == typeof(DateTime))
+                        {
+                            sqlStatement = $"{item.Name}='{value}'";
+                        }
+                        else if (type == typeof(Byte) || type == typeof(SByte) || type == typeof(UInt16) || type == typeof(UInt32) || type == typeof(UInt64) || type == typeof(Int16) || type == typeof(Int32) || type == typeof(Int64) || type == typeof(Decimal) || type == typeof(Double) || type == typeof(Single))
+                        {
+                            sqlStatement = $"{item.Name}={value}";
+                        }
+                        else
+                        {
+                            sqlStatement = $"{item.Name}={Convert.ToInt32(value)}";
+
+                        }
                     }
                 }
             }
