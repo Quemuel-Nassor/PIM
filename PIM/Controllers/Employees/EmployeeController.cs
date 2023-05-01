@@ -92,7 +92,7 @@ namespace PIM.Controllers.Employees
             Employee Funcionario = null;
             try
             {
-                var result = DatabaseController.ExecuteQuery($"SELECT * FROM Holerite_Pim.Funcionario WHERE Id={id}");
+                var result = DatabaseController.ExecuteQuery($"SELECT * FROM Holerite_Pim.Funcionario WHERE Email='{email}'");
                 result.Read();
 
                 Funcionario = MapperHelper.MapFromDb<Employee>(result);
