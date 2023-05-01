@@ -1,9 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using PIM.Controllers.Database;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PIM
@@ -16,6 +12,7 @@ namespace PIM
         [STAThread]
         static void Main()
         {
+            DatabaseController.Create();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Views.Login());
