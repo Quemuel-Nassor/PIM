@@ -6,7 +6,7 @@ namespace PIM.Views
 {
     public partial class Employees : Form
     {
-        private MySqlConnection _connection;
+        //private MySqlConnection _connection;
 
         public Employees()
         {
@@ -32,36 +32,36 @@ namespace PIM.Views
         {
             try
             {
-                _connection = new MySqlConnection(PIM.Controllers.Database.Connection.stringConnection);
+                //_connection = new MySqlConnection(PIM.Controllers.Database.Connection.stringConnection);
 
-                _connection.Open();
+                //_connection.Open();
 
-                MySqlCommand cmd = new MySqlCommand();
-                cmd.Connection = _connection;
+                //MySqlCommand cmd = new MySqlCommand();
+                //cmd.Connection = _connection;
 
-                cmd.CommandText = "SELECT * FROM pessoa";
+                //cmd.CommandText = "SELECT * FROM pessoa";
 
-                cmd.Prepare();
+                //cmd.Prepare();
 
-                MySqlDataReader reader = cmd.ExecuteReader();
+                //MySqlDataReader reader = cmd.ExecuteReader();
 
                 tableEmployees.Items.Clear();
 
-                while (reader.Read())
-                {
-                    string[] row =
-                    {
-                        reader.GetString(0),
-                        reader.GetString(1),
-                        reader.GetString(2),
-                        reader.GetString(3),
-                        reader.GetString(4),
-                        reader.GetString(5),
-                        reader.GetString(6)
-                    };
+                //while (reader.Read())
+                //{
+                //    string[] row =
+                //    {
+                //        reader.GetString(0),
+                //        reader.GetString(1),
+                //        reader.GetString(2),
+                //        reader.GetString(3),
+                //        reader.GetString(4),
+                //        reader.GetString(5),
+                //        reader.GetString(6)
+                //    };
 
-                    tableEmployees.Items.Add(new ListViewItem(row));
-                }
+                //    tableEmployees.Items.Add(new ListViewItem(row));
+                //}
             }
             catch (MySqlException ex)
             {
@@ -75,7 +75,7 @@ namespace PIM.Views
             }
             finally
             {
-                _connection.Close();
+                //_connection.Close();
             }
         }
 
@@ -130,23 +130,23 @@ namespace PIM.Views
             try
             {
 
-                _connection = new MySqlConnection(PIM.Controllers.Database.Connection.stringConnection);
+                //_connection = new MySqlConnection(PIM.Controllers.Database.Connection.stringConnection);
 
-                _connection.Open();
+                //_connection.Open();
 
-                MySqlCommand cmd = new MySqlCommand();
-                cmd.Connection = _connection;
+                //MySqlCommand cmd = new MySqlCommand();
+                //cmd.Connection = _connection;
 
-                cmd.CommandText = "UPDATE pessoa SET nome=@nome, email=@email, celular=@celular, cpf=@cpf, senha=@senha, userAdmin=@userAdmin " + "WHERE id=@id ";
-                /*cmd.Parameters.AddWithValue("@nome", textNome.Text);
-                cmd.Parameters.AddWithValue("@email", textEmail.Text);
-                cmd.Parameters.AddWithValue("@celular", textCelular.Text);
-                cmd.Parameters.AddWithValue("@cpf", textCPF.Text);
-                cmd.Parameters.AddWithValue("@senha", textSenha.Text);
-                cmd.Parameters.AddWithValue("@userAdmin", textAdmin.Text);
-                cmd.Parameters.AddWithValue("@id", employeesID);*/
-                cmd.Prepare();
-                cmd.ExecuteNonQuery();
+                //cmd.CommandText = "UPDATE pessoa SET nome=@nome, email=@email, celular=@celular, cpf=@cpf, senha=@senha, userAdmin=@userAdmin " + "WHERE id=@id ";
+                ///*cmd.Parameters.AddWithValue("@nome", textNome.Text);
+                //cmd.Parameters.AddWithValue("@email", textEmail.Text);
+                //cmd.Parameters.AddWithValue("@celular", textCelular.Text);
+                //cmd.Parameters.AddWithValue("@cpf", textCPF.Text);
+                //cmd.Parameters.AddWithValue("@senha", textSenha.Text);
+                //cmd.Parameters.AddWithValue("@userAdmin", textAdmin.Text);
+                //cmd.Parameters.AddWithValue("@id", employeesID);*/
+                //cmd.Prepare();
+                //cmd.ExecuteNonQuery();
 
                 MessageBox.Show("Dados Atualizados com Sucesso!",
                 "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -167,7 +167,7 @@ namespace PIM.Views
             }
             finally
             {
-                _connection.Close();
+                //_connection.Close();
             }
 
         }
@@ -183,20 +183,20 @@ namespace PIM.Views
 
                 if (conf == DialogResult.Yes)
                 {
-                    _connection = new MySqlConnection(PIM.Controllers.Database.Connection.stringConnection);
+                    //_connection = new MySqlConnection(PIM.Controllers.Database.Connection.stringConnection);
 
-                    _connection.Open();
+                    //_connection.Open();
 
-                    MySqlCommand cmd = new MySqlCommand();
-                    cmd.Connection = _connection;
+                    //MySqlCommand cmd = new MySqlCommand();
+                    //cmd.Connection = _connection;
 
-                    cmd.CommandText = "DELETE FROM pessoa WHERE id=@id";
+                    //cmd.CommandText = "DELETE FROM pessoa WHERE id=@id";
 
-                    cmd.Parameters.AddWithValue("@id", employeesID);
+                    //cmd.Parameters.AddWithValue("@id", employeesID);
 
-                    cmd.Prepare();
+                    //cmd.Prepare();
 
-                    cmd.ExecuteNonQuery();
+                    //cmd.ExecuteNonQuery();
 
                     MessageBox.Show("Dados exclu�dos com Sucesso!",
                     "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -218,7 +218,7 @@ namespace PIM.Views
             }
             finally
             {
-                _connection.Close();
+                //_connection.Close();
             }
         }
 

@@ -7,7 +7,7 @@ namespace PIM.Views
     public partial class RegisterEmployees : Form
     {
 
-        private MySqlConnection _connection;
+        //private MySqlConnection _connection;
 
         public RegisterEmployees()
         {
@@ -18,12 +18,12 @@ namespace PIM.Views
         {
             try
             {
-                _connection = new MySqlConnection(PIM.Controllers.Database.Connection.stringConnection);
+                //_connection = new MySqlConnection(PIM.Controllers.Database.Connection.stringConnection);
 
-                _connection.Open();
+                //_connection.Open();
 
-                MySqlCommand cmd = new MySqlCommand();
-                cmd.Connection = _connection;
+                //MySqlCommand cmd = new MySqlCommand();
+                //cmd.Connection = _connection;
 
                 //string insertEmployee = $"INSERT INTO funcionario (nome, email, celular, cpf, senha, idCargo, idPermissao) VALUES ('{inputName.Text}', '{inputEmail.Text}', '{inputPhone.Text}', '{inputCPF.Text}', '{inputPassword.Text}', {selectOffice.SelectedItem}, {selectPermition.SelectedItem})";
                 string insertEmployee = $"INSERT INTO `holerite_pim`.`funcionario` (`idPermissao`, `idCargo`, `nome`, `email`, `celular`, `cpf`, `senha`) VALUES ({selectPermition.SelectedIndex + 1}, {selectOffice.SelectedIndex + 1}, '{inputName.Text}', '{inputEmail.Text}', '{inputPhone.Text}', '{inputCPF.Text}', '{inputPassword.Text}');";
@@ -39,11 +39,11 @@ namespace PIM.Views
                 //cmd.Parameters.AddWithValue("@permissao", selectPermition.SelectedItem);
                 //cmd.Parameters.AddWithValue("@userAdmin", selectPermition.SelectedItem);
 
-                cmd.CommandText = insertEmployee;
+                //cmd.CommandText = insertEmployee;
 
-                cmd.Prepare();
+                //cmd.Prepare();
 
-                cmd.ExecuteNonQuery();
+                //cmd.ExecuteNonQuery();
 
                 MessageBox.Show("Funcionario Criado Com Sucesso!",
                 "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -60,7 +60,7 @@ namespace PIM.Views
                 MessageBox.Show("Ocorreu: " + ex.Message,
                                 "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            finally { _connection.Close(); }
+            finally { /*_connection.Close();*/ }
 
         }
 
