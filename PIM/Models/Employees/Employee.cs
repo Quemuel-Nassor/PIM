@@ -14,7 +14,7 @@ namespace PIM.Models.Employees
         public string Email { get; set; }
         public string Senha { get; set; }
         public bool Ativo { get; set; }
-        public EnumPositions IdCargo { get; set; }
-        public EnumPermissions IdPermissao { get; set; }
+        public ulong IdCargo { get; set; }
+        public ulong IdPermissao { get; set; }
     }
 }
