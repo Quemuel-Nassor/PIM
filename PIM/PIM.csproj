@@ -95,11 +95,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\Database\DatabaseController.cs" />
+    <Compile Include="Controllers\Employees\EmployeeController.cs" />
+    <Compile Include="Controllers\Payslips\PayslipController.cs" />
+    <Compile Include="Controllers\Permissions\PermissionController.cs" />
+    <Compile Include="Controllers\Positions\PositionController.cs" />
+    <Compile Include="Controllers\Utils\MapperHelper.cs" />
+    <Compile Include="Models\Payslips\Payslip.cs" />
+    <Compile Include="Models\Permissions\EnumPermissions.cs" />
+    <Compile Include="Models\Permissions\Permission.cs" />
+    <Compile Include="Models\Positions\EnumPositions.cs" />
+    <Compile Include="Models\Positions\Position.cs" />
     <Compile Include="Views\CustomCoponents\RoudedButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controllers\Database\Connection.cs" />
-    <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\Employees\Employee.cs" />
     <Compile Include="Views\Employees.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,6 +194,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="SqlScripts\create_db.sql" />
+    <Content Include="SqlScripts\create_db_commented.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
