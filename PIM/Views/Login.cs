@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using PIM.Controllers.Employees;
 using System;
 using System.Windows.Forms;
 
@@ -7,9 +8,11 @@ namespace PIM.Views
 {
     public partial class Login : Form
     {
-        private MySqlConnection _connection;
+        private EmployeeController employeeController;
+
         public Login()
         {
+            employeeController = new EmployeeController();
             InitializeComponent();
         }
 
@@ -147,60 +150,17 @@ namespace PIM.Views
 
             try
             {
-                _connection = new MySqlConnection(PIM.Controllers.Database.Connection.stringConnection);
-                _connection.Open();
-
-                MySqlCommand cmd = new MySqlCommand();
-                cmd.Connection = _connection;
-
-                string authenticateUser = $"SELECT * FROM `holerite_pim`.`funcionario` WHERE email = '{inputEmailLogin.Text}';";
-                cmd.CommandText = authenticateUser;
-                cmd.Prepare();
-                MySqlDataReader rdr = cmd.ExecuteReader();
-
-
-                if (rdr.Read())
+                var employee = employeeController.Get(inputEmailLogin.Text);
+                if (employee != null)
                 {
-
-                    _connection.Close();
-
-                    _connection.Open();
-                    string authenticatePassword = $"SELECT * FROM `holerite_pim`.`funcionario` WHERE email = '{inputEmailLogin.Text}' AND senha = '{inputPasswordLogin.Text}';";
-                    cmd.Prepare();
-                    cmd.CommandText = authenticatePassword;
-
-                    MySqlDataReader user = cmd.ExecuteReader();
-
-                    if (user.Read())
+                    if (employee.Senha.Equals(inputPasswordLogin.Text))
                     {
-
-                        int id = user.GetInt32(0);
-                        int idPermition = user.GetInt32(1);
-                        int idRole = user.GetInt32(2);
-                        string name = user.GetString(3);
-                        string email = user.GetString(4);
-                        string phone = user.GetString(5);
-                        string cpf = user.GetString(6);
-                        string password = user.GetString(7);
-                        string status = user.GetString(8);
-                        /*
-                                                PIM.Database.User.id = id;
-                                                PIM.Database.User.idPermition = idPermition;
-                                                PIM.Database.User.name = name;
-                                                PIM.Database.User.email = email;
-                                                PIM.Database.User.phone = phone;
-                                                PIM.Database.User.cpf = cpf;
-                                                PIM.Database.User.password = password;
-                                                PIM.Database.User.status = status;*/
-
                         MessageBox.Show("Login feito com sucesso!");
 
-                        PIM.Views.Home home = new PIM.Views.Home();
+                        Home home = new Home();
 
                         this.Hide();
                         home.Show();
-
-
                     }
                     else
                     {
@@ -226,7 +186,6 @@ namespace PIM.Views
                 MessageBox.Show("Ocorreu: " + ex.Message,
                                 "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            finally { _connection.Close(); }
         }
     }
 }
